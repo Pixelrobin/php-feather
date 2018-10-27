@@ -1,0 +1,18 @@
+{
+	"name": "pixelrobin/feather-php",
+	"type": "library",
+	"description": "PHP library for feather icons",
+	"keywords": ["feather", "icons", "svg", "pixelrobin"],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Michael Savchuk",
+			"email": "pixelrobin@hotmail.com"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Feather\\": "src"
+		}
+	}
+}

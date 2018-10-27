@@ -1,0 +1,15 @@
+{
+  "name": "feather-php",
+  "version": "1.0.0",
+  "description": "PHP library for feather icons",
+  "main": "index.js",
+  "scripts": {
+    "build": "node bin/build.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "feather-icons": "^4.7.3"
+  }
+}
