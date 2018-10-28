@@ -4,10 +4,10 @@ namespace Feather;
 
 require __DIR__ . './defaultAttributes.php';
 
-use \Feather\DEFAULT_ATTRIBUTES;
+use Feather\DEFAULT_ATTRIBUTES;
 
 class Icons {
-	public $attributes = DEFAULT_ATTRIBUTES;
+	private $attributes = DEFAULT_ATTRIBUTES;
 
 	public function get($name, $echo = true, $attributes = array()) {
 		$filepath = __DIR__ . '/../icons/' . $name . '.svg';
@@ -24,7 +24,12 @@ class Icons {
 			$dom_attributes = array_reduce(
 				array_keys($attributes),
 				function($final, $current) use ($attributes) {
-					return $final . $current . '="' . $attributes[$current] . '" ';
+					$attribute_value = $attributes[$current];
+					
+					if (is_bool($attribute_value))
+						$attribute_value = $attribute_value ? 'true' : 'false';
+					
+					return $final . $current . '="' . (string)$attribute_value . '" ';
 				}, ''
 			);
 
@@ -33,9 +38,15 @@ class Icons {
 			if ($echo) echo $icon;
 			else return $icon;
 		}
+
+		return false;
 	}
 
-	static function get_default_attributes() {
-		return DEFAULT_ATTRIBUTES;
+	public function setAttributes($attributes) {
+		$this->attributes = array_merge(DEFAULT_ATTRIBUTES, $attributes);
+	}
+
+	public function getAttributes() {
+		return $this->attributes;
 	}
 }

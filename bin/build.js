@@ -22,8 +22,12 @@ let php = Object.keys(defaultAttrs)
 	.map(key => `'${ key }' => '${ defaultAttrs[key] }'`)
 	.reduce((final, current) => final + current + ',', '');
 
-php = '<?php namespace Feather; const DEFAULT_ATTRS = array('
+php = '<?php\n\n'
+	+ '/* !!! THIS FILE IS AUTO-GENERATED !!! */\n\n'
+	+ 'namespace Feather; const DEFAULT_ATTRIBUTES = array('
 	+ php.substring(0, php.length - 1)
 	+ ');';
 
 fs.writeFileSync(path.resolve(__dirname, '../src/defaultAttributes.php'), php);
+
+console.log(feather.icons.anchor.toSvg());
