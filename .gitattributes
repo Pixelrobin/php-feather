@@ -1,0 +1,7 @@
+/bin                export-ignore
+/tests              export-ignore
+/.gitattributes     export-ignore
+/.gitignore         export-ignore
+package.json        export-ignore
+package-lock.json   export-ignore
+README.md           export-ignore
