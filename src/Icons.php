@@ -9,7 +9,7 @@ use Feather\DEFAULT_ATTRIBUTES;
 class Icons {
 	private $attributes = DEFAULT_ATTRIBUTES;
 
-	public function get($name, $echo = true, $attributes = array()) {
+	public function get($name, $attributes = array(), $echo = true) {
 		$filepath = __DIR__ . '/../icons/' . $name . '.svg';
 
 		if (file_exists($filepath)) {
