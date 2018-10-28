@@ -1,5 +1,5 @@
 {
-	"name": "pixelrobin/feather-php",
+	"name": "pixelrobin/php-feather",
 	"type": "library",
 	"description": "PHP library for feather icons",
 	"keywords": ["feather", "icons", "svg", "pixelrobin"],
