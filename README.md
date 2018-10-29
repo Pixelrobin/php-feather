@@ -3,7 +3,7 @@ PHP Library for [Feather](https://feathericons.com/).
 
 For more information on Feather itself, please refer to their [README](https://github.com/feathericons/feather).
 
-This project is still in an early stage, and I'm still pretty new to PHP. Suggestions are welcome!
+This project is still in an early stage. Suggestions are welcome!
 
 ## Important!
 This library isn't considered 'stable' yet! To use it, you need to set `minimum-stability` to `dev` in your project's composer.json!
@@ -142,7 +142,7 @@ $icons->setAttributes(Feather\DEFAULT_ATTRIBUTES, false);
 ```
 
 ## Contributing
-This project is at an early stage, and I'm still a little new to PHP, so please feel free to open up issues and PRs for suggesstions.
+Feel free to open up issues and PRs for suggesstions.
 
 Developing requires both nodejs and composer. The icons are included as a node module and built for use in php.
 
