@@ -29,5 +29,3 @@ php = '<?php\n\n'
 	+ ');';
 
 fs.writeFileSync(path.resolve(__dirname, '../src/defaultAttributes.php'), php);
-
-console.log(feather.icons.anchor.toSvg());
