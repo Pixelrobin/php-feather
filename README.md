@@ -23,15 +23,17 @@ require 'vendor/autoload.php';
 ```
 ## Usage
 ### Get an icon
-Icons echo by default. This will display the 'anchor' icon.
+Icons echo by default.
 ```php
 <?php
 require 'vendor/autoload.php';
 $icons = new Feather\Icons;
 ?>
 
+<!-- Display the 'anchor' icon !-->
 <?php $icons->get('feather'); ?>
 
+<!-- Get creative! !-->
 <button class="icon-button">Learn More <?php $icons->get('arrow-right'); ?></button>
 ```
 
