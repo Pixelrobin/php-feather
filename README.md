@@ -43,7 +43,7 @@ $icons->setAttributes(array(
 ));
 
 $icons->get('mail');
-// <svg ... color="red" stroke-width="1" ... >...</svg>
+// <svg ... color="red" stroke-width="3" ... >...</svg>
 ```
 ### Get an icon as a string
 Set the third argument to `false` to get a string instead of echoing the icon.
