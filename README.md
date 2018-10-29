@@ -5,6 +5,9 @@ For more information on Feather itself, please refer to their [README](https://g
 
 This project is still in an early stage, and I'm still pretty new to PHP. Suggestions are welcome!
 
+## Important!
+This library isn't considered 'stable' yet! To use it, you need to set `minimum-stability` to `dev` in your project's composer.json!
+
 ## Installing
 php-feather uses [Composer](https://getcomposer.org/). Run the following to install it.
 ```
@@ -14,7 +17,10 @@ If you want to install composer without all the tests and nodejs stuff, use `--p
 ```
 composer require pixelrobin/php-feather --prefer-dist
 ```
-
+Then, don't forget to autoload your Composer packages!
+```php
+require 'vendor/autoload.php';
+```
 ## Usage
 ### Get an icon
 Icons echo by default. This will display the 'anchor' icon.
@@ -136,7 +142,7 @@ $icons->setAttributes(Feather\DEFAULT_ATTRIBUTES, false);
 ## Contributing
 This project is at an early stage, and I'm still a little new to PHP, so please feel free to open up issues and PRs for suggesstions.
 
-Developing requires both nodejs and composer. The icons are including as a node module and built for use in php.
+Developing requires both nodejs and composer. The icons are included as a node module and built for use in php.
 
 Better contributing docs are coming soon!
 
