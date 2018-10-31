@@ -3,10 +3,7 @@ PHP Library for [Feather](https://feathericons.com/).
 
 For more information on Feather itself, please refer to their [README](https://github.com/feathericons/feather).
 
-This project is still in an early stage. Suggestions are welcome!
-
-## Important!
-This library isn't considered 'stable' yet! To use it, you need to set `minimum-stability` to `dev` in your project's composer.json!
+This project is still pretty young, and I'm still a little new to PHP. Suggestions are welcome!
 
 ## Installing
 php-feather uses [Composer](https://getcomposer.org/). Run the following to install it.
