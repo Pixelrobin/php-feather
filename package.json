@@ -10,6 +10,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "feather-icons": "^4.7.3"
+    "feather-icons": "^4.9.0"
   }
 }
