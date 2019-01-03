@@ -2,7 +2,7 @@
 
 namespace Feather;
 
-require __DIR__ . './defaultAttributes.php';
+require __DIR__ . '/defaultAttributes.php';
 
 use Feather\DEFAULT_ATTRIBUTES;
 
