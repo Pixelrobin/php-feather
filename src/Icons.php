@@ -24,17 +24,15 @@ class Icons {
 
 	public function __construct() {
 		$this->attributes = self::DEFAULT_ATTRIBUTES;
+		$this->loadIcons();
 	}
 
 
 	public function get($name, $attributes = array(), $echo = true) {
 
-		$this->loadIcons();
-
 		if ( ! isset($this->icons[$name])) {
 			return false;
 		}
-
 
 		$contents = $this->icons[$name];
 		$attributes = array_merge($this->attributes, $attributes);
