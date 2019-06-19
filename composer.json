@@ -20,7 +20,7 @@
 	},
 	"require": {
 		"php": ">=5.3.0",
-		"npm-asset/feather-icons": "^4.19"
+		"npm-asset/feather-icons": ">=4"
 	},
 	"replace": {
         "npm-asset/classnames": "*",
@@ -31,5 +31,8 @@
 	        "type": "composer",
 	        "url": "https://asset-packagist.org"
 	    }
-	]
+	],
+	"scripts": {
+		"test": "phpunit --verbose --bootstrap vendor/autoload.php ./tests/FeatherTest"
+	}
 }
