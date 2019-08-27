@@ -90,22 +90,17 @@ class Icons {
 			return;
 		}
 
-		$paths = array(
-			__DIR__ . '/../../npm-asset/feather-icons/dist/icons.json',
-			__DIR__ . '/../vendor/npm-asset/feather-icons/dist/icons.json',
-		);
+		$vendorPos = strpos(__DIR__, 'vendor') + 6;
+		$path = substr(__DIR__, 0, $vendorPos);
+		$path .= DIRECTORY_SEPARATOR;
+		$path .= implode(DIRECTORY_SEPARATOR, ['npm-asset', 'feather-icons', 'dist', 'icons.json']);
 
-		foreach ($paths as $path) {
-
-			$path = realpath($path);
-
-			if (is_file($path)) {
-				$decoded = json_decode( (string) file_get_contents($path), true);
-				$error = json_last_error();
-				if ($error === JSON_ERROR_NONE) {
-					$this->icons = $decoded;
-					return;
-				}
+		if (is_file($path)) {
+			$decoded = json_decode( (string) file_get_contents($path), true);
+			$error = json_last_error();
+			if ($error === JSON_ERROR_NONE) {
+				$this->icons = $decoded;
+				return;
 			}
 		}
 	}
