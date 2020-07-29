@@ -41,7 +41,7 @@ $icons->get('feather', array('class' => 'fooclass', 'stroke-width' => 1, 'aria-l
 // <svg ... class="feather feather-feather fooclass", stroke-width="1", aria-label="Battery icon" ... >...</svg>
 ```
 
-You can also change the default attributes in the `Icons` class if you want some attributes consistent across multiple `get` calls. The passed attributes are merged over the current default attributes in the class by default.
+You can also change the default attributes in the `Icons` class if you want some attributes consistent across multiple `get` calls. The passed attributes are merged over the current attributes in the class by default.
 ```php
 $icons->setAttributes(array(
     'color' => 'red',
@@ -94,7 +94,7 @@ doStuffWith($cloud_icon);
 <br>
 
 ### `Feather\Icons->setAttributes($attributes, $merge = true)`
-Sets default attributes of the class. These are used as default attributes for the `get` method. By default, the `$attributes` argument is merged over the current default attributes in the class. You can disable this by setting the `$merge` argument to false, but only do it if you know what you are doing.
+Sets default attributes of the class. These are used as default attributes for the `get` method. By default, the `$attributes` argument is merged over the current attributes in the class. You can disable this by setting the `$merge` argument to false, but only do it if you know what you are doing.
 ```php
 $icons = new Feather\Icons;
 
@@ -114,7 +114,7 @@ $icons->get('delete');
 <br>
 
 ### `Feather\Icons->getAttributes()`
-Get the current default attributes for the class. To set it, use the `setAttributes()` method;
+Get the current attributes for the class. To set it, use the `setAttributes()` method;
 ```php
 $icons = new Feather\Icons;
 
