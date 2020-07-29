@@ -41,7 +41,7 @@ class Icons {
 	}
 
 	public function setAttributes($attributes, $merge = true) {
-		if ($merge) $this->attributes = array_merge(DEFAULT_ATTRIBUTES, $attributes);
+		if ($merge) $this->attributes = array_merge($this->attributes, $attributes);
 		else $this->attributes = $attributes;
 	}
 
