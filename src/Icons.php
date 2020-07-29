@@ -4,8 +4,6 @@ namespace Feather;
 
 require __DIR__ . '/defaultAttributes.php';
 
-use Feather\DEFAULT_ATTRIBUTES;
-
 class Icons {
 	private $attributes = DEFAULT_ATTRIBUTES;
 
