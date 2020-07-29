@@ -25,10 +25,10 @@ class Icons {
 				array_keys($attributes),
 				function($final, $current) use ($attributes) {
 					$attribute_value = $attributes[$current];
-					
+
 					if (is_bool($attribute_value))
 						$attribute_value = $attribute_value ? 'true' : 'false';
-					
+
 					return $final . $current . '="' . (string)$attribute_value . '" ';
 				}, ''
 			);
