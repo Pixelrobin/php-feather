@@ -3,11 +3,11 @@
 use PHPUnit\Framework\TestCase;
 
 class FeatherTest extends TestCase {
-	public function setUp() {
+	protected function setUp() {
 		$this->icons = new Feather\Icons;
 
 		// Data from JS
-		
+
 		$this->XMLTestData = json_decode(
 			file_get_contents(__DIR__ . '/XMLTestData.json'),
 			true
