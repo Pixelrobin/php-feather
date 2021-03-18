@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "node bin/build.js",
-    "test": "node tests/prepare && cd vendor/bin && phpunit --verbose --bootstrap ../autoload.php ../../tests/FeatherTest && cd ../../"
+    "test": "node tests/prepare && vendor/bin/phpunit --verbose --bootstrap vendor/autoload.php tests/FeatherTest"
   },
   "author": "",
   "license": "MIT",
