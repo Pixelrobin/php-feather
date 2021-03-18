@@ -7,7 +7,7 @@ class FeatherTest extends TestCase {
 		$this->icons = new Feather\Icons;
 
 		// Data from JS
-		
+
 		$this->XMLTestData = json_decode(
 			file_get_contents(__DIR__ . '/XMLTestData.json'),
 			true

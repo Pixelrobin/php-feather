@@ -8,7 +8,7 @@ let defaultAttrs = null;
 Object.keys(feather.icons)
 	.forEach(key => {
 		const { name, contents, attrs } = feather.icons[key];
-		
+
 		if (defaultAttrs === null) {
 			defaultAttrs = attrs;
 		}

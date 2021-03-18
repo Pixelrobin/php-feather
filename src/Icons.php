@@ -4,8 +4,6 @@ namespace Feather;
 
 require __DIR__ . '/defaultAttributes.php';
 
-use Feather\DEFAULT_ATTRIBUTES;
-
 class Icons {
 	private $attributes = DEFAULT_ATTRIBUTES;
 
@@ -25,10 +23,10 @@ class Icons {
 				array_keys($attributes),
 				function($final, $current) use ($attributes) {
 					$attribute_value = $attributes[$current];
-					
+
 					if (is_bool($attribute_value))
 						$attribute_value = $attribute_value ? 'true' : 'false';
-					
+
 					return $final . $current . '="' . (string)$attribute_value . '" ';
 				}, ''
 			);
@@ -43,7 +41,7 @@ class Icons {
 	}
 
 	public function setAttributes($attributes, $merge = true) {
-		if ($merge) $this->attributes = array_merge(DEFAULT_ATTRIBUTES, $attributes);
+		if ($merge) $this->attributes = array_merge($this->attributes, $attributes);
 		else $this->attributes = $attributes;
 	}
 
