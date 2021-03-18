@@ -3,7 +3,7 @@
 use PHPUnit\Framework\TestCase;
 
 class FeatherTest extends TestCase {
-	public function setUp() {
+	protected function setUp() {
 		$this->icons = new Feather\Icons;
 
 		// Data from JS
