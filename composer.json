@@ -8,6 +8,10 @@
 		{
 			"name": "Michael Savchuk",
 			"email": "pixelrobin@hotmail.com"
+		},
+		{
+			"name": "Nate Wiebe",
+			"email": "nate@northern.co"
 		}
 	],
 	"autoload": {
