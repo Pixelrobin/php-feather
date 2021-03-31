@@ -1,28 +1,33 @@
 {
-	"name": "pixelrobin/php-feather",
-	"type": "library",
-	"description": "PHP library for feather icons",
-	"keywords": ["feather", "icons", "svg", "pixelrobin"],
-	"license": "MIT",
-	"authors": [
-		{
-			"name": "Michael Savchuk",
-			"email": "pixelrobin@hotmail.com"
-		},
-		{
-			"name": "Nate Wiebe",
-			"email": "nate@northern.co"
-		}
-	],
-	"autoload": {
-		"psr-4": {
-			"Feather\\": "src/"
-		}
-	},
-	"require": {
-		"php": ">=5.6.0"
-	},
-	"require-dev": {
-		"phpunit/phpunit": "7"
-	}
+    "name": "pixelrobin/php-feather",
+    "type": "library",
+    "description": "PHP library for feather icons",
+    "keywords": [
+        "feather",
+        "icons",
+        "svg",
+        "pixelrobin"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michael Savchuk",
+            "email": "pixelrobin@hotmail.com"
+        },
+        {
+            "name": "Nate Wiebe",
+            "email": "nate@northern.co"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Feather\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "7"
+    }
 }
