@@ -20,6 +20,20 @@ jobs:
             -   name: Checkout
                 uses: actions/checkout@v2
 
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    coverage: 'none'
+                    extensions: 'json,xml,xsl'
+                    ini-values: 'memory_limit=-1'
+                    php-version: '${{ matrix.php }}'
+                    tools: pecl
+
+            -   name: Display versions
+                run: |
+                    php -r 'foreach (get_loaded_extensions() as $extension) echo $extension . " " . phpversion($extension) . PHP_EOL;'
+                    php -i
+
             -   name: Validate composer.json
                 run: composer validate --strict
 
