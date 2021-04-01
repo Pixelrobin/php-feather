@@ -1,15 +1,15 @@
 {
-  "name": "feather-php",
-  "version": "1.0.0",
-  "description": "PHP library for feather icons",
-  "main": "index.js",
-  "scripts": {
-    "build": "node bin/build.js",
-    "test": "node tests/prepare && vendor/bin/phpunit --verbose --bootstrap vendor/autoload.php tests/FeatherTest"
-  },
-  "author": "",
-  "license": "MIT",
-  "dependencies": {
-    "feather-icons": "^4.26.0"
-  }
+    "name": "feather-php",
+    "version": "1.0.0",
+    "description": "PHP library for feather icons",
+    "main": "index.js",
+    "scripts": {
+        "build": "node bin/build.js",
+        "test": "node tests/prepare && vendor/bin/phpunit --verbose --bootstrap vendor/autoload.php tests/FeatherTest"
+    },
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "feather-icons": "^4.26.0"
+    }
 }
