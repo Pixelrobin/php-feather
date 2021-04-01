@@ -1,0 +1,39 @@
+name: Tests
+
+on:
+    push:
+    pull_request:
+
+defaults:
+    run:
+        shell: bash
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                php: ['7.3', '7.4', '8.0']
+
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v2
+
+            -   name: Validate composer.json
+                run: composer validate --strict
+
+            -   name: Cache Composer packages
+                id: composer-cache
+                uses: actions/cache@v2
+                with:
+                    path: vendor
+                    key: ${{ matrix.php }}-composer-${{ hashFiles('**/composer.lock') }}
+                    restore-keys: |
+                        ${{ matrix.php }}-composer-
+
+            -   name: Install dependencies
+                run: composer install --prefer-dist --no-progress
+
+            -   name: Run test suite
+                run: composer run-script test
