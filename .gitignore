@@ -75,6 +75,6 @@ typings/
 # FuseBox cache
 .fusebox/
 
-composer.phar
 /vendor/
 /composer.lock
+/composer.phar
