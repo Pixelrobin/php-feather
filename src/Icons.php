@@ -33,7 +33,9 @@ class Icons
                         $attribute_value = $attribute_value ? 'true' : 'false';
                     }
 
-                    return $final . $current . '="' . (string)$attribute_value . '" ';
+                    $attribute_value = htmlspecialchars((string)$attribute_value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false);
+
+                    return $final . $current . '="' . $attribute_value . '" ';
                 },
                 ''
             );
