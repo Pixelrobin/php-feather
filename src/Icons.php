@@ -2,6 +2,8 @@
 
 namespace Feather;
 
+use Feather\Exception\IconNotFoundException;
+
 require __DIR__ . '/defaultAttributes.php';
 
 class Icons
@@ -47,7 +49,7 @@ class Icons
             }
         }
 
-        return false;
+        throw new IconNotFoundException(\sprintf('Icon `%s` not found', $name));
     }
 
     public function setAttributes($attributes, $merge = true)
