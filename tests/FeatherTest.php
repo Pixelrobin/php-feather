@@ -1,5 +1,6 @@
 <?php
 
+use Feather\Exception\IconNotFoundException;
 use PHPUnit\Framework\TestCase;
 
 class FeatherTest extends TestCase
@@ -79,5 +80,12 @@ class FeatherTest extends TestCase
         );
 
         $this->icons->setAttributes(Feather\DEFAULT_ATTRIBUTES);
+    }
+
+    public function testIconNotFound(): void
+    {
+        $this->expectException(IconNotFoundException::class);
+
+        $this->icons->get('icon-that-should-not-be-found');
     }
 }
