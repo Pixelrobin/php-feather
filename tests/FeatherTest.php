@@ -4,7 +4,22 @@ use PHPUnit\Framework\TestCase;
 
 class FeatherTest extends TestCase
 {
-    protected function setUp()
+    /**
+     * @var \Feather\Icons
+     */
+    private $icons;
+
+    /**
+     * @var array
+     */
+    private $XMLTestData;
+
+    /**
+     * @var array
+     */
+    private $AttributeTestData;
+
+    protected function setUp(): void
     {
         $this->icons = new Feather\Icons();
 
