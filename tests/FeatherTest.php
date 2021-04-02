@@ -36,12 +36,12 @@ class FeatherTest extends TestCase
         );
     }
 
-    public function testIconsHasDefaultAttributes()
+    public function testIconsHasDefaultAttributes(): void
     {
         $this->assertEquals(Feather\DEFAULT_ATTRIBUTES, $this->icons->getAttributes());
     }
 
-    public function testIconDefaultXML()
+    public function testIconDefaultXML(): void
     {
         foreach ($this->XMLTestData as $test_data) {
             $this->assertXMLStringEqualsXMLString(
@@ -52,7 +52,7 @@ class FeatherTest extends TestCase
         }
     }
 
-    public function testIconXMLWithAttributes()
+    public function testIconXMLWithAttributes(): void
     {
         $test_data = $this->AttributeTestData;
 
@@ -65,7 +65,7 @@ class FeatherTest extends TestCase
         );
     }
 
-    public function testIconXMLWithAttributesFromClass()
+    public function testIconXMLWithAttributesFromClass(): void
     {
         $test_data = $this->AttributeTestData;
 
