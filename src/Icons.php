@@ -10,7 +10,7 @@ class Icons
 {
     private $attributes = DEFAULT_ATTRIBUTES;
 
-    public function get($name, $attributes = [], $echo = true)
+    public function get(string $name, array $attributes = []): string
     {
         $filepath = __DIR__ . '/../icons/' . $name . '.svg';
 
@@ -42,26 +42,24 @@ class Icons
 
             $icon = '<svg ' . $dom_attributes . '>' . $contents . '</svg>';
 
-            if ($echo) {
-                echo $icon;
-            } else {
-                return $icon;
-            }
+            return $icon;
         }
 
         throw new IconNotFoundException(\sprintf('Icon `%s` not found', $name));
     }
 
-    public function setAttributes($attributes, $merge = true)
+    public function setAttributes(array $attributes, bool $merge = true): self
     {
         if ($merge) {
             $this->attributes = array_merge($this->attributes, $attributes);
         } else {
             $this->attributes = $attributes;
         }
+
+        return $this;
     }
 
-    public function getAttributes()
+    public function getAttributes(): array
     {
         return $this->attributes;
     }
