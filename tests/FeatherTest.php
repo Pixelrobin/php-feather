@@ -46,7 +46,7 @@ class FeatherTest extends TestCase
         foreach ($this->XMLTestData as $test_data) {
             $this->assertXMLStringEqualsXMLString(
                 $test_data['xml'],
-                $this->icons->get($test_data['name'], [], false),
+                $this->icons->get($test_data['name'], []),
                 'Icon fail: ' . $test_data['name']
             );
         }
@@ -56,7 +56,7 @@ class FeatherTest extends TestCase
     {
         $test_data = $this->AttributeTestData;
 
-        $icon = $this->icons->get($test_data['name'], $test_data['attributes'], false);
+        $icon = $this->icons->get($test_data['name'], $test_data['attributes']);
 
         $this->assertXMLStringEqualsXMLString(
             $test_data['xml'],
@@ -70,7 +70,7 @@ class FeatherTest extends TestCase
         $test_data = $this->AttributeTestData;
 
         $this->icons->setattributes($test_data['attributes']);
-        $icon = $this->icons->get($test_data['name'], [], false);
+        $icon = $this->icons->get($test_data['name'], []);
 
         $this->assertXMLStringEqualsXMLString(
             $test_data['xml'],
