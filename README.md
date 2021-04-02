@@ -30,19 +30,17 @@ require 'vendor/autoload.php';
 
 ### Get an icon
 
-Icons echo by default.
-
 ```php
 <?php
 require 'vendor/autoload.php';
-$icons = new Feather\Icons;
+$icons = new Feather\Icons();
 ?>
 
 <!-- Display the 'anchor' icon !-->
-<?php $icons->get('feather'); ?>
+<?php echo $icons->get('feather'); ?>
 
 <!-- Get creative! !-->
-<button class="icon-button">Learn More <?php $icons->get('arrow-right'); ?></button>
+<button class="icon-button">Learn More <?php echo $icons->get('arrow-right'); ?></button>
 ```
 
 ### Get an icon with modified properties
@@ -67,15 +65,6 @@ $icons->get('mail');
 // <svg ... color="red" stroke-width="3" ... >...</svg>
 ```
 
-### Get an icon as a string
-
-Set the third argument to `false` to get a string instead of echoing the icon.
-
-```php
-$icon_string = $icons->get('activity', array(), false);
-// Then do whatever with $icon_string
-```
-
 ## API
 
 ### `Feather\Icons`
@@ -83,29 +72,25 @@ $icon_string = $icons->get('activity', array(), false);
 Usage:
 
 ```php
-$icons = new Feather\Icons;
+$icons = new Feather\Icons();
 ```
 
 <br>
 
-### `Feather\Icons->get($name, $attributes = array(), $echo = true)`
+### `Feather\Icons->get($name, $attributes = array())`
 
-Gets an icon as svg. Can be echoed (default) or returned as a string. Attributes passed will be merged over the class defaults.
+Gets an icon as a string. Attributes passed will be merged over the class defaults.
 
 ```php
-$icons = new Feather\Icons;
+$icons = new Feather\Icons();
 
-// Echo an icon
-$icons->get('anchor');
+// Get an icon
+echo $icons->get('anchor');
 // <svg ... >...</svg>
 
-// Echo an icon with modified properties
-$icons->get('battery', array('class' => 'fooclass', 'stroke-width' => 1, 'aria-label' => 'Battery icon'));
+// Get an icon with modified properties
+echo $icons->get('battery', array('class' => 'fooclass', 'stroke-width' => 1, 'aria-label' => 'Battery icon'));
 // <svg ... class="feather feather-battery fooclass", stroke-width="1", aria-label="Battery icon" ... >...</svg>
-
-// Get an icon as a string without echoing it
-$cloud_icon = $icons->get('cloud', array(), false);
-doStuffWith($cloud_icon);
 ```
 
 #### Arguments
@@ -114,7 +99,6 @@ doStuffWith($cloud_icon);
 |------------|-------|---------------------------------------------------------------------------------|
 |$name       |string |The name of the icon. A full list can be found [here](https://feathericons.com/).|
 |$attributes?|array  |Attributes to modify/add (see 'Usage' above for example)                         |
-|$echo?      |boolean|Whether to echo the icon svg (true) or not (false)                               |
 
 <br>
 
@@ -124,7 +108,7 @@ Sets default attributes of the class. These are used as default attributes for t
 disable this by setting the `$merge` argument to false, but only do it if you know what you are doing.
 
 ```php
-$icons = new Feather\Icons;
+$icons = new Feather\Icons();
 
 // Set some default attributes (this will be merged with the current defaults in the class)
 $icons->setAttributes(array('color' => 'red', 'stroke-width' => 3));
@@ -148,7 +132,7 @@ $icons->get('delete');
 Get the current attributes for the class. To set it, use the `setAttributes()` method;
 
 ```php
-$icons = new Feather\Icons;
+$icons = new Feather\Icons();
 
 $attrs = $icons->getAttributes();
 ```
@@ -160,7 +144,7 @@ $attrs = $icons->getAttributes();
 Constant array of default attributes. They are applied to every new `Icons` class. You can use this to reset the attributes of an `Icons` class.
 
 ```php
-$icons = new Feather\Icons;
+$icons = new Feather\Icons();
 
 // Add/modify some default attributes
 $icons->setAttributes( ... );
