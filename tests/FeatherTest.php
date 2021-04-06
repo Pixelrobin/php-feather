@@ -1,5 +1,6 @@
 <?php
 
+use Feather\Exception\IconNotFoundException;
 use PHPUnit\Framework\TestCase;
 
 class FeatherTest extends TestCase
@@ -36,27 +37,27 @@ class FeatherTest extends TestCase
         );
     }
 
-    public function testIconsHasDefaultAttributes()
+    public function testIconsHasDefaultAttributes(): void
     {
         $this->assertEquals(Feather\DEFAULT_ATTRIBUTES, $this->icons->getAttributes());
     }
 
-    public function testIconDefaultXML()
+    public function testIconDefaultXML(): void
     {
         foreach ($this->XMLTestData as $test_data) {
             $this->assertXMLStringEqualsXMLString(
                 $test_data['xml'],
-                $this->icons->get($test_data['name'], [], false),
+                $this->icons->get($test_data['name'], []),
                 'Icon fail: ' . $test_data['name']
             );
         }
     }
 
-    public function testIconXMLWithAttributes()
+    public function testIconXMLWithAttributes(): void
     {
         $test_data = $this->AttributeTestData;
 
-        $icon = $this->icons->get($test_data['name'], $test_data['attributes'], false);
+        $icon = $this->icons->get($test_data['name'], $test_data['attributes']);
 
         $this->assertXMLStringEqualsXMLString(
             $test_data['xml'],
@@ -65,12 +66,12 @@ class FeatherTest extends TestCase
         );
     }
 
-    public function testIconXMLWithAttributesFromClass()
+    public function testIconXMLWithAttributesFromClass(): void
     {
         $test_data = $this->AttributeTestData;
 
         $this->icons->setattributes($test_data['attributes']);
-        $icon = $this->icons->get($test_data['name'], [], false);
+        $icon = $this->icons->get($test_data['name'], []);
 
         $this->assertXMLStringEqualsXMLString(
             $test_data['xml'],
@@ -79,5 +80,12 @@ class FeatherTest extends TestCase
         );
 
         $this->icons->setAttributes(Feather\DEFAULT_ATTRIBUTES);
+    }
+
+    public function testIconNotFound(): void
+    {
+        $this->expectException(IconNotFoundException::class);
+
+        $this->icons->get('icon-that-should-not-be-found');
     }
 }

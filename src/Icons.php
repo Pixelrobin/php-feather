@@ -2,6 +2,8 @@
 
 namespace Feather;
 
+use Feather\Exception\IconNotFoundException;
+
 require __DIR__ . '/defaultAttributes.php';
 
 class Icons
@@ -15,7 +17,7 @@ class Icons
         $this->icons = require implode(DIRECTORY_SEPARATOR, [dirname(__FILE__), '..', 'resources', 'icons.php']);
     }
 
-    public function get($name, $attributes = [], $echo = true)
+    public function get(string $name, array $attributes = []): string
     {
         if (isset($this->icons[$name])) {
             $contents   = $this->icons[$name];
@@ -47,26 +49,24 @@ class Icons
 
             $icon = '<svg ' . $dom_attributes . '>' . $contents . '</svg>';
 
-            if ($echo) {
-                echo $icon;
-            } else {
-                return $icon;
-            }
+            return $icon;
         }
 
-        return false;
+        throw new IconNotFoundException(\sprintf('Icon `%s` not found', $name));
     }
 
-    public function setAttributes($attributes, $merge = true)
+    public function setAttributes(array $attributes, bool $merge = true): self
     {
         if ($merge) {
             $this->attributes = array_merge($this->attributes, $attributes);
         } else {
             $this->attributes = $attributes;
         }
+
+        return $this;
     }
 
-    public function getAttributes()
+    public function getAttributes(): array
     {
         return $this->attributes;
     }
