@@ -1,10 +1,6 @@
 <?php
 
-/* !!! THIS FILE IS AUTO-GENERATED !!! */
-
-namespace Feather;
-
-const DEFAULT_ATTRIBUTES = array (
+return array (
   'xmlns' => 'http://www.w3.org/2000/svg',
   'width' => '24',
   'height' => '24',

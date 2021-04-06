@@ -46,15 +46,11 @@ function writeAttributes(array $attributes): void
     $export = var_export($attributes, true);
 
     file_put_contents(
-        implode(DIRECTORY_SEPARATOR, [$rootDir, 'src', 'defaultAttributes.php']),
+        implode(DIRECTORY_SEPARATOR, [$rootDir, 'resources', 'attributes.php']),
         <<<EOT
     <?php
 
-    /* !!! THIS FILE IS AUTO-GENERATED !!! */
-
-    namespace Feather;
-
-    const DEFAULT_ATTRIBUTES = $export;
+    return $export;
 
     EOT
     );

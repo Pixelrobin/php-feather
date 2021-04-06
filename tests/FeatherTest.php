@@ -39,7 +39,9 @@ class FeatherTest extends TestCase
 
     public function testIconsHasDefaultAttributes(): void
     {
-        $this->assertEquals(Feather\DEFAULT_ATTRIBUTES, $this->icons->getAttributes());
+        $attributes = require implode(DIRECTORY_SEPARATOR, [dirname(__FILE__), '..', 'resources', 'attributes.php']);
+
+        $this->assertEquals($attributes, $this->icons->getAttributes());
     }
 
     public function testIconDefaultXML(): void
@@ -68,6 +70,8 @@ class FeatherTest extends TestCase
 
     public function testIconXMLWithAttributesFromClass(): void
     {
+        $attributes = require implode(DIRECTORY_SEPARATOR, [dirname(__FILE__), '..', 'resources', 'attributes.php']);
+
         $test_data = $this->AttributeTestData;
 
         $this->icons->setattributes($test_data['attributes']);
@@ -79,7 +83,7 @@ class FeatherTest extends TestCase
             'XML custom attribute on class fail'
         );
 
-        $this->icons->setAttributes(Feather\DEFAULT_ATTRIBUTES);
+        $this->icons->setAttributes($attributes);
     }
 
     public function testIconNotFound(): void
