@@ -47,9 +47,7 @@ class Icons
                 ''
             );
 
-            $icon = '<svg ' . $dom_attributes . '>' . $contents . '</svg>';
-
-            return $icon;
+            return '<svg ' . $dom_attributes . '>' . $contents . '</svg>';
         }
 
         throw new IconNotFoundException(\sprintf('Icon `%s` not found', $name));
