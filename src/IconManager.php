@@ -4,7 +4,7 @@ namespace Feather;
 
 use Feather\Exception\IconNotFoundException;
 
-class Icons
+class IconManager
 {
     private $attributes;
 

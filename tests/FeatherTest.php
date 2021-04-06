@@ -1,13 +1,11 @@
 <?php
 
 use Feather\Exception\IconNotFoundException;
+use Feather\IconManager;
 use PHPUnit\Framework\TestCase;
 
 class FeatherTest extends TestCase
 {
-    /**
-     * @var \Feather\Icons
-     */
     private $icons;
 
     /**
@@ -22,7 +20,7 @@ class FeatherTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->icons = new Feather\Icons();
+        $this->icons = new IconManager();
 
         // Data from JS
 
