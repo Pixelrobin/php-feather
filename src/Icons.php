@@ -10,12 +10,17 @@ class Icons
 {
     private $attributes = DEFAULT_ATTRIBUTES;
 
+    private $icons;
+
+    public function __construct()
+    {
+        $this->icons = require implode(DIRECTORY_SEPARATOR, [dirname(__FILE__), '..', 'resources', 'icons.php']);
+    }
+
     public function get(string $name, array $attributes = []): string
     {
-        $filepath = __DIR__ . '/../icons/' . $name . '.svg';
-
-        if (file_exists($filepath)) {
-            $contents   = file_get_contents($filepath);
+        if (isset($this->icons[$name])) {
+            $contents   = $this->icons[$name];
             $attributes = array_merge($this->attributes, $attributes);
 
             if (isset($attributes['class'])) {
@@ -35,7 +40,9 @@ class Icons
                         $attribute_value = $attribute_value ? 'true' : 'false';
                     }
 
-                    return $final . $current . '="' . (string)$attribute_value . '" ';
+                    $attribute_value = htmlspecialchars((string)$attribute_value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false);
+
+                    return $final . $current . '="' . $attribute_value . '" ';
                 },
                 ''
             );
