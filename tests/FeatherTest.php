@@ -1,6 +1,7 @@
 <?php
 
 use Feather\Exception\IconNotFoundException;
+use Feather\Icon;
 use Feather\IconManager;
 use PHPUnit\Framework\TestCase;
 
@@ -11,73 +12,75 @@ class FeatherTest extends TestCase
     /**
      * @var array
      */
-    private $XMLTestData;
+    private $xmlTestData;
 
     /**
      * @var array
      */
-    private $AttributeTestData;
+    private $attributeTestData;
 
     protected function setUp(): void
     {
         $this->icons = new IconManager();
 
-        // Data from JS
-
-        $this->XMLTestData = json_decode(
-            file_get_contents(__DIR__ . '/XMLTestData.json'),
+        $this->xmlTestData = \json_decode(
+            \file_get_contents(\implode(DIRECTORY_SEPARATOR, [\dirname(__FILE__), 'XMLTestData.json'])),
             true
         );
 
-        $this->AttributeTestData = json_decode(
-            file_get_contents(__DIR__ . '/AttributeTestData.json'),
+        $this->attributeTestData = \json_decode(
+            \file_get_contents(\implode(DIRECTORY_SEPARATOR, [\dirname(__FILE__), 'AttributeTestData.json'])),
             true
         );
     }
 
     public function testIconsHasDefaultAttributes(): void
     {
-        $attributes = require implode(DIRECTORY_SEPARATOR, [dirname(__FILE__), '..', 'resources', 'attributes.php']);
+        $attributes = require \implode(DIRECTORY_SEPARATOR, [\dirname(__FILE__), '..', 'resources', 'attributes.php']);
 
         $this->assertEquals($attributes, $this->icons->getAttributes());
     }
 
+    public function testIconIsObject(): void
+    {
+        foreach ($this->xmlTestData as $testData) {
+            $this->assertInstanceOf(Icon::class, $this->icons->get($testData['name']));
+        }
+    }
+
     public function testIconDefaultXML(): void
     {
-        foreach ($this->XMLTestData as $test_data) {
+        foreach ($this->xmlTestData as $testData) {
             $this->assertXMLStringEqualsXMLString(
-                $test_data['xml'],
-                $this->icons->get($test_data['name'], []),
-                'Icon fail: ' . $test_data['name']
+                $testData['xml'],
+                (string)$this->icons->get($testData['name']),
+                'Icon fail: ' . $testData['name']
             );
         }
     }
 
     public function testIconXMLWithAttributes(): void
     {
-        $test_data = $this->AttributeTestData;
-
-        $icon = $this->icons->get($test_data['name'], $test_data['attributes']);
+        $testData = $this->attributeTestData;
 
         $this->assertXMLStringEqualsXMLString(
-            $test_data['xml'],
-            $icon,
+            $testData['xml'],
+            (string)$this->icons->get($testData['name'], $testData['attributes']),
             'XML custom attribute fail'
         );
     }
 
     public function testIconXMLWithAttributesFromClass(): void
     {
-        $attributes = require implode(DIRECTORY_SEPARATOR, [dirname(__FILE__), '..', 'resources', 'attributes.php']);
+        $attributes = require \implode(DIRECTORY_SEPARATOR, [\dirname(__FILE__), '..', 'resources', 'attributes.php']);
 
-        $test_data = $this->AttributeTestData;
+        $testData = $this->attributeTestData;
 
-        $this->icons->setattributes($test_data['attributes']);
-        $icon = $this->icons->get($test_data['name'], []);
+        $this->icons->setattributes($testData['attributes']);
 
         $this->assertXMLStringEqualsXMLString(
-            $test_data['xml'],
-            $icon,
+            $testData['xml'],
+            (string)$this->icons->get($testData['name']),
             'XML custom attribute on class fail'
         );
 

@@ -12,53 +12,27 @@ class IconManager
 
     public function __construct()
     {
-        $this->attributes = require implode(DIRECTORY_SEPARATOR, [dirname(__FILE__), '..', 'resources', 'attributes.php']);
-        $this->icons      = require implode(DIRECTORY_SEPARATOR, [dirname(__FILE__), '..', 'resources', 'icons.php']);
+        $this->attributes = require \implode(DIRECTORY_SEPARATOR, [\dirname(__FILE__), '..', 'resources', 'attributes.php']);
+        $this->icons      = require \implode(DIRECTORY_SEPARATOR, [\dirname(__FILE__), '..', 'resources', 'icons.php']);
     }
 
-    public function get(string $name, array $attributes = []): string
+    public function setAttributes(array $attributes): self
     {
-        if (isset($this->icons[$name])) {
-            $contents   = $this->icons[$name];
-            $attributes = array_merge($this->attributes, $attributes);
+        $this->attributes = \array_merge($this->attributes, $attributes);
 
-            if (isset($attributes['class'])) {
-                $class_end = ' ' . $attributes['class'];
-            } else {
-                $class_end = '';
-            }
-
-            $attributes['class'] = 'feather feather-' . $name . $class_end;
-
-            $dom_attributes = array_reduce(
-                array_keys($attributes),
-                function ($final, $current) use ($attributes) {
-                    $attribute_value = $attributes[$current];
-
-                    if (is_bool($attribute_value)) {
-                        $attribute_value = $attribute_value ? 'true' : 'false';
-                    }
-
-                    $attribute_value = htmlspecialchars((string)$attribute_value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false);
-
-                    return $final . $current . '="' . $attribute_value . '" ';
-                },
-                ''
-            );
-
-            return '<svg ' . $dom_attributes . '>' . $contents . '</svg>';
-        }
-
-        throw new IconNotFoundException(\sprintf('Icon `%s` not found', $name));
+        return $this;
     }
 
-    public function setAttributes(array $attributes, bool $merge = true): self
+    public function setAttribute(string $key, $value): self
     {
-        if ($merge) {
-            $this->attributes = array_merge($this->attributes, $attributes);
-        } else {
-            $this->attributes = $attributes;
-        }
+        $this->attributes[$key] = $value;
+
+        return $this;
+    }
+
+    public function removeAttribute(string $key): self
+    {
+        unset($this->attributes[$key]);
 
         return $this;
     }
@@ -66,5 +40,30 @@ class IconManager
     public function getAttributes(): array
     {
         return $this->attributes;
+    }
+
+    public function getIconNames(): array
+    {
+        return \array_keys($this->icons);
+    }
+
+    public function get(string $name, array $attributes = []): Icon
+    {
+        if (!isset($this->icons[$name])) {
+            throw new IconNotFoundException(\sprintf('Icon `%s` not found', $name));
+        }
+
+        $contents   = $this->icons[$name];
+        $attributes = \array_merge($this->attributes, $attributes);
+
+        $classes = [
+            'feather',
+            'feather-' . $name,
+            (string)($attributes['class'] ?? ''),
+        ];
+
+        $attributes['class'] = \trim(\implode(' ', $classes));
+
+        return new Icon($name, $attributes, $contents);
     }
 }
