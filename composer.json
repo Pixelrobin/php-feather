@@ -42,6 +42,7 @@
         "npm-asset/feather-icons": "4.26.0"
     },
     "scripts": {
+        "build": "bin/build",
         "test": "phpunit --verbose tests"
     }
 }
