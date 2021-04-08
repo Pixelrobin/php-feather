@@ -4,17 +4,16 @@ namespace Feather;
 
 use Feather\Exception\IconNotFoundException;
 
-require __DIR__ . '/defaultAttributes.php';
-
 class Icons
 {
-    private $attributes = DEFAULT_ATTRIBUTES;
+    private $attributes;
 
     private $icons;
 
     public function __construct()
     {
-        $this->icons = require implode(DIRECTORY_SEPARATOR, [dirname(__FILE__), '..', 'resources', 'icons.php']);
+        $this->attributes = require implode(DIRECTORY_SEPARATOR, [dirname(__FILE__), '..', 'resources', 'attributes.php']);
+        $this->icons      = require implode(DIRECTORY_SEPARATOR, [dirname(__FILE__), '..', 'resources', 'icons.php']);
     }
 
     public function get(string $name, array $attributes = []): string
