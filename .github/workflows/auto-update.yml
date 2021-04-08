@@ -15,6 +15,8 @@ jobs:
         steps:
             -   name: Checkout
                 uses: actions/checkout@v2
+                with:
+                    ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
             -   name: Setup PHP
                 uses: shivammathur/setup-php@v2
@@ -51,7 +53,6 @@ jobs:
             -   name: Create Pull Request
                 uses: peter-evans/create-pull-request@v3
                 with:
-                    token: ${{ secrets.AUTO_PAT }}
                     commit-message: Update resources from Feather icons
                     branch: automated/feather-update
                     delete-branch: true
