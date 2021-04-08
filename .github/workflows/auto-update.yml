@@ -1,0 +1,69 @@
+name: Auto Update
+
+on:
+    schedule:
+        -   cron: '0 0 * * *'
+
+defaults:
+    run:
+        shell: bash
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v2
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    coverage: 'none'
+                    extensions: 'json,xml,xsl'
+                    ini-values: 'memory_limit=-1'
+                    php-version: '8.0'
+                    tools: pecl
+
+            -   name: Display versions
+                run: |
+                    php -r 'foreach (get_loaded_extensions() as $extension) echo $extension . " " . phpversion($extension) . PHP_EOL;'
+                    php -i
+
+            -   name: Validate composer.json
+                run: composer validate --strict
+
+            -   name: Cache Composer packages
+                id: composer-cache
+                uses: actions/cache@v2
+                with:
+                    path: vendor
+                    key: 8.0-composer-${{ hashFiles('**/composer.lock') }}
+                    restore-keys: |
+                        8.0-composer-
+
+            -   name: Install dependencies
+                run: composer install --prefer-dist --no-progress
+
+            -   name: Build files
+                run: composer run-script build
+
+            -   name: Create Pull Request
+                uses: peter-evans/create-pull-request@v3
+                with:
+                    token: ${{ secrets.AUTO_PAT }}
+                    commit-message: Update resources from Feather icons
+                    branch: automated/feather-update
+                    delete-branch: true
+                    title: '[AUTO] Feather Update'
+                    body: |
+                        Updated resources built based on Feather Icons.
+                    labels: automated pr
+                    assignees: |
+                        Pixelrobin
+                        natewiebe13
+
+            -   name: Check outputs
+                run: |
+                    echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+                    echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
