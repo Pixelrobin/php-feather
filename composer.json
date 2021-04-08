@@ -39,7 +39,7 @@
         "ext-libxml": "*",
         "ext-simplexml": "*",
         "phpunit/phpunit": "^9.5",
-        "npm-asset/feather-icons": "4.26.0"
+        "npm-asset/feather-icons": ">=4.28"
     },
     "scripts": {
         "build": "bin/build",
