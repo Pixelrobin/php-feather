@@ -53,9 +53,6 @@ class IconManager
             throw new IconNotFoundException(\sprintf('Icon `%s` not found', $name));
         }
 
-        $contents   = $this->icons[$name];
-        $attributes = \array_merge($this->attributes, $attributes);
-
-        return new Icon($name, $attributes, $contents);
+        return new Icon($name, \array_merge($this->attributes, $attributes), $this->icons[$name]);
     }
 }
