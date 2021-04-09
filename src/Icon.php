@@ -73,6 +73,14 @@ class Icon
 
     private function filterAttributes(array $attributes): array
     {
+        $classes = [
+            'feather',
+            'feather-' . $this->getName(),
+            (string)($attributes['class'] ?? ''),
+        ];
+
+        $attributes['class'] = \trim(\implode(' ', $classes));
+
         return \array_filter(
             $attributes,
             function ($item): bool {

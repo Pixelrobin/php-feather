@@ -56,14 +56,6 @@ class IconManager
         $contents   = $this->icons[$name];
         $attributes = \array_merge($this->attributes, $attributes);
 
-        $classes = [
-            'feather',
-            'feather-' . $name,
-            (string)($attributes['class'] ?? ''),
-        ];
-
-        $attributes['class'] = \trim(\implode(' ', $classes));
-
         return new Icon($name, $attributes, $contents);
     }
 }
