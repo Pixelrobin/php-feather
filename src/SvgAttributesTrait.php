@@ -86,4 +86,23 @@ trait SvgAttributesTrait
     {
         return (float)$this->getAttribute('stroke-width');
     }
+
+    public function setCssClass(string $class): self
+    {
+        $this->setAttribute('class', $class);
+
+        return $this;
+    }
+
+    public function addCssClass(string $class): self
+    {
+        $this->setAttribute('class', $this->getCssClass() . ' ' . $class);
+
+        return $this;
+    }
+
+    public function getCssClass(): string
+    {
+        return (string)$this->getAttribute('class');
+    }
 }
