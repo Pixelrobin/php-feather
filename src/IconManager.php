@@ -47,7 +47,7 @@ class IconManager
         return \array_keys($this->icons);
     }
 
-    public function get(string $name, array $attributes = []): Icon
+    public function getIcon(string $name, array $attributes = []): Icon
     {
         if (!isset($this->icons[$name])) {
             throw new IconNotFoundException(\sprintf('Icon `%s` not found', $name));
