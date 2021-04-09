@@ -6,7 +6,7 @@ use Feather\Exception\IconNotFoundException;
 
 class IconManager
 {
-    private $attributes;
+    use SvgAttributesTrait;
 
     private $icons;
 
@@ -14,32 +14,6 @@ class IconManager
     {
         $this->attributes = require \implode(DIRECTORY_SEPARATOR, [\dirname(__FILE__), '..', 'resources', 'attributes.php']);
         $this->icons      = require \implode(DIRECTORY_SEPARATOR, [\dirname(__FILE__), '..', 'resources', 'icons.php']);
-    }
-
-    public function setAttributes(array $attributes): self
-    {
-        $this->attributes = \array_merge($this->attributes, $attributes);
-
-        return $this;
-    }
-
-    public function setAttribute(string $key, $value): self
-    {
-        $this->attributes[$key] = $value;
-
-        return $this;
-    }
-
-    public function removeAttribute(string $key): self
-    {
-        unset($this->attributes[$key]);
-
-        return $this;
-    }
-
-    public function getAttributes(): array
-    {
-        return $this->attributes;
     }
 
     public function getIconNames(): array
