@@ -44,7 +44,7 @@ class FeatherTest extends TestCase
     public function testIconIsObject(): void
     {
         foreach ($this->xmlTestData as $testData) {
-            $this->assertInstanceOf(Icon::class, $this->icons->get($testData['name']));
+            $this->assertInstanceOf(Icon::class, $this->icons->getIcon($testData['name']));
         }
     }
 
@@ -53,7 +53,7 @@ class FeatherTest extends TestCase
         foreach ($this->xmlTestData as $testData) {
             $this->assertXMLStringEqualsXMLString(
                 $testData['xml'],
-                (string)$this->icons->get($testData['name']),
+                (string)$this->icons->getIcon($testData['name']),
                 'Icon fail: ' . $testData['name']
             );
         }
@@ -65,7 +65,7 @@ class FeatherTest extends TestCase
 
         $this->assertXMLStringEqualsXMLString(
             $testData['xml'],
-            (string)$this->icons->get($testData['name'], $testData['attributes']),
+            (string)$this->icons->getIcon($testData['name'], $testData['attributes']),
             'XML custom attribute fail'
         );
     }
@@ -80,7 +80,7 @@ class FeatherTest extends TestCase
 
         $this->assertXMLStringEqualsXMLString(
             $testData['xml'],
-            (string)$this->icons->get($testData['name']),
+            (string)$this->icons->getIcon($testData['name']),
             'XML custom attribute on class fail'
         );
 
@@ -91,6 +91,6 @@ class FeatherTest extends TestCase
     {
         $this->expectException(IconNotFoundException::class);
 
-        $this->icons->get('icon-that-should-not-be-found');
+        $this->icons->getIcon('icon-that-should-not-be-found');
     }
 }
