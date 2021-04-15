@@ -50,15 +50,19 @@ jobs:
             -   name: Build files
                 run: composer run-script build
 
+            -   name: Get Feather version
+                id: get-feather-version
+                run: echo "::set-output name=feather-version::$(composer show npm-asset/feather-icons --format=json | jq '.versions[]')"
+
             -   name: Create Pull Request
                 uses: peter-evans/create-pull-request@v3
                 with:
-                    commit-message: Update resources from Feather icons
+                    commit-message: "Update resources from Feather ${{ steps.get-feather-version.outputs.feather-version }}"
                     branch: automated/feather-update
                     delete-branch: true
-                    title: '[AUTO] Feather Update'
+                    title: "[AUTO] Feather Update ${{ steps.get-feather-version.outputs.feather-version }}"
                     body: |
-                        Updated resources built based on Feather Icons.
+                        Updated resources built based on Feather ${{ steps.get-feather-version.outputs.feather-version }}.
                     labels: automated pr
                     assignees: |
                         Pixelrobin
