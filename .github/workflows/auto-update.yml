@@ -52,7 +52,7 @@ jobs:
 
             -   name: Get Feather version
                 id: get-feather-version
-                run: echo "::set-output name=feather-version::$(composer show npm-asset/feather-icons --format=json | jq '.versions[]')"
+                run: echo "::set-output name=feather-version::$(composer show npm-asset/feather-icons --format=json | jq -r '.versions[]')"
 
             -   name: Create Pull Request
                 uses: peter-evans/create-pull-request@v3
