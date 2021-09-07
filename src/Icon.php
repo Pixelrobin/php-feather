@@ -35,7 +35,7 @@ class Icon
                     $attributeValue = $attributeValue ? 'true' : 'false';
                 }
 
-                $attributeValue = \htmlspecialchars((string)$attributeValue, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false);
+                $attributeValue = $this->escapeString((string)$attributeValue);
 
                 return \sprintf('%s %s="%s"', $final, $current, $attributeValue);
             },
@@ -61,6 +61,11 @@ class Icon
                 return $item !== null;
             }
         );
+    }
+
+    private function escapeString(string $string): string
+    {
+        return \htmlspecialchars($string, \ENT_QUOTES | \ENT_SUBSTITUTE, 'UTF-8', false);
     }
 
     public function __toString(): string
