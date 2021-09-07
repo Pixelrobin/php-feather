@@ -43,7 +43,7 @@ class Icon
         $attributes = $this->filterAttributes($this->attributes);
 
         if (!empty($this->altText)) {
-            $uniqId = \uniqid($this->getName());
+            $uniqId = \uniqid(\sprintf('feather-%s-title-', $this->getName()));
 
             $attributes['role']            = $attributes['role'] ?? 'img';
             $attributes['aria-labelledby'] = $uniqId;
