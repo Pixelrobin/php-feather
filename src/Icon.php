@@ -39,7 +39,18 @@ class Icon
 
     public function render(): string
     {
+        $altText    = '';
         $attributes = $this->filterAttributes($this->attributes);
+
+        if (!empty($this->altText)) {
+            $uniqId = \uniqid($this->getName());
+
+            $attributes['role']            = $attributes['role'] ?? 'img';
+            $attributes['aria-labelledby'] = $uniqId;
+            $altText                       = \sprintf('<title id="%s">%s</title>', $this->escapeString($uniqId), $this->escapeString((string)$this->getAltText()));
+        } else {
+            $attributes['aria-hidden'] = true;
+        }
 
         $svgAttributes = \array_reduce(
             \array_keys($attributes),
@@ -57,7 +68,7 @@ class Icon
             ''
         );
 
-        return '<svg ' . $svgAttributes . '>' . $this->content . '</svg>';
+        return '<svg ' . $svgAttributes . '>' . $altText . $this->content . '</svg>';
     }
 
     private function filterAttributes(array $attributes): array
