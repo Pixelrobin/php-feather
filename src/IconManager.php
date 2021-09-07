@@ -21,12 +21,12 @@ class IconManager
         return \array_keys($this->icons);
     }
 
-    public function getIcon(string $name, array $attributes = []): Icon
+    public function getIcon(string $name, array $attributes = [], ?string $altText = null): Icon
     {
         if (!isset($this->icons[$name])) {
             throw new IconNotFoundException(\sprintf('Icon `%s` not found', $name));
         }
 
-        return new Icon($name, \array_merge($this->attributes, $attributes), $this->icons[$name]);
+        return new Icon($name, $this->icons[$name], \array_merge($this->attributes, $attributes), $altText);
     }
 }

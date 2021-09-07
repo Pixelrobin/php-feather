@@ -10,16 +10,31 @@ class Icon
 
     private $content;
 
-    public function __construct(string $name, array $attributes, string $content)
+    private $altText;
+
+    public function __construct(string $name, string $content, array $attributes = [], ?string $altText = null)
     {
         $this->name       = $name;
-        $this->attributes = $attributes;
         $this->content    = $content;
+        $this->attributes = $attributes;
+        $this->altText    = $altText;
     }
 
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setAltText(?string $altText): self
+    {
+        $this->altText = $altText;
+
+        return $this;
+    }
+
+    public function getAltText(): ?string
+    {
+        return $this->altText;
     }
 
     public function render(): string
