@@ -86,6 +86,28 @@ class IconTest extends TestCase
         $this->assertXmlStringEqualsXmlString($iconString, $this->changeSvgTitleId($this->icon->render(), $iconTitleId));
     }
 
+    public function testSettingAttributes(): void
+    {
+        $attributes = [
+            'data-custom-attribute' => 'test',
+            'data-other-attribute' => 'test2',
+            'width' => 12,
+            'height' => 24,
+            'stroke' => '#fff',
+            'stroke-width' => 2,
+            'class' => 'custom-class'
+        ];
+
+        $this->icon->setAttributes(['data-custom-attribute' => $attributes['data-custom-attribute']])
+            ->setAttribute('data-other-attribute', $attributes['data-other-attribute'])
+            ->setSize($attributes['width'], $attributes['height'])
+            ->setColor($attributes['stroke'])
+            ->setWeight($attributes['stroke-width'])
+            ->setCssClass($attributes['class']);
+
+        $this->assertEquals($attributes, $this->icon->getAttributes());
+    }
+
     private function changeSvgTitleId(string $svg, string $id): string
     {
         $xmlLoader = new Loader();
