@@ -74,7 +74,7 @@ class IconTest extends TestCase
                 <svg aria-labelledby="%s" class="feather feather-%s" role="img">
                   <title id="%s">%s</title>
                   %s
-                 </svg>
+                </svg>
             SVG,
             $iconTitleId,
             $this->icon->getName(),
