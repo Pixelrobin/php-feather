@@ -9,30 +9,33 @@ class IconManager
 {
     use SvgAttributesTrait;
 
-    private $icons;
+    private static $icons;
 
     private $aliases = [];
 
     public function __construct()
     {
         $this->attributes = require \implode(DIRECTORY_SEPARATOR, [\dirname(__FILE__), '..', 'resources', 'attributes.php']);
-        $this->icons      = require \implode(DIRECTORY_SEPARATOR, [\dirname(__FILE__), '..', 'resources', 'icons.php']);
+
+        if ($this::$icons === null) {
+            $this::$icons = require \implode(DIRECTORY_SEPARATOR, [\dirname(__FILE__), '..', 'resources', 'icons.php']);
+        }
     }
 
     public function getIconNames(): array
     {
-        return \array_keys($this->icons);
+        return \array_keys($this::$icons);
     }
 
     public function getIcon(string $name, array $attributes = [], ?string $altText = null): Icon
     {
         $name = $this->normalizeIconName($name);
 
-        if (!isset($this->icons[$name])) {
+        if (!isset($this::$icons[$name])) {
             throw new IconNotFoundException(\sprintf('Icon `%s` not found', $name));
         }
 
-        return new Icon($name, $this->icons[$name], \array_merge($this->attributes, $attributes), $altText);
+        return new Icon($name, $this::$icons[$name], \array_merge($this->attributes, $attributes), $altText);
     }
 
     public function addAlias(string $alias, string $iconName): self
@@ -41,7 +44,7 @@ class IconManager
             throw new AliasDefinedException(\sprintf('Alias `%s` already defined', $alias));
         }
 
-        if (!isset($this->icons[$iconName])) {
+        if (!isset($this::$icons[$iconName])) {
             throw new IconNotFoundException(\sprintf('Icon `%s` not found', $iconName));
         }
 
