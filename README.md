@@ -4,7 +4,6 @@ PHP Library for [Feather](https://feathericons.com/).
 
 For more information on Feather itself, please refer to their [README](https://github.com/feathericons/feather).
 
-This project is still pretty young, and I'm still a little new to PHP. Suggestions are welcome!
 
 ## Installation
 
@@ -34,6 +33,13 @@ $icons = new \Feather\IconManager();
 </button>
 ```
 
+`getIcon()` returns an `Icon` object. To render the icon html itself, either cast it as a string or call its `render()` function.
+
+```php
+$icons->getIcon('anchor'); // Returns an Icon object
+$html = $icons->getIcon('anchor')->render(); // Returns the icon's html
+echo $icons->getIcon('anchor'); // Outputs the icon's html, since it is cast as a string
+```
 ### Attributes
 
 Attributes can be modified on both the `IconManager` and on `Icon` objects. Attributes can be modified directly using the `setAttribute(s)` functions or by using the helper functions.
@@ -41,6 +47,7 @@ Attributes can be modified on both the `IconManager` and on `Icon` objects. Attr
 Attribute changes on the `IconManager` will affect all `Icon` objects created by the `IconManager`. Changes on `Icon` objects will only affect the individual icons.
 
 ```php
+// Use on the IconManager instance to set default attributes for all icons
 $icons->setAttributes(['stroke' => '#fff', 'stroke-width' => 2]);
 $icons->setAttribute('stroke', '#fff');
 
@@ -48,6 +55,9 @@ $icons->setSize(24);
 $icons->setColor('#fff');
 $icons->setWeight(2);
 $icons->addCssClass('foo');
+
+// Or use on a single icon to only affect that one
+echo $icons->getIcon('alert-triangle')->setColor('red')->setAttribute('data-alert', 'true');
 ```
 
 ### Accessibility
