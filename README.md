@@ -4,7 +4,6 @@ PHP Library for [Feather](https://feathericons.com/).
 
 For more information on Feather itself, please refer to their [README](https://github.com/feathericons/feather).
 
-
 ## Installation
 
 Install `php-feather` using [Composer](https://getcomposer.org/).
@@ -33,7 +32,7 @@ $icons = new \Feather\IconManager();
 </button>
 ```
 
-`getIcon()` returns an `Icon` object. To render the icon html itself, either cast it as a string or call its `render()` function.
+`Feather\IconManager::getIcon()` returns an `Icon` object. To render the icon html itself, either cast the `Icon` as a string or call its `render()` function.
 
 ```php
 $icons->getIcon('anchor'); // Returns an Icon object
